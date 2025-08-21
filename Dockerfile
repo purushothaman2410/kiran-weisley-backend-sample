@@ -14,10 +14,11 @@ RUN npm install --production
 COPY . .
 
 # Expose the port your app runs on
-EXPOSE 3000
+EXPOSE 5000
 
 # Set environment variable for production
 ENV NODE_ENV=production
 
 # Start the server
 CMD ["node", "server.js"]
+
