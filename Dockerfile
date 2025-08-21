@@ -1,24 +1,20 @@
-# Use an official Node.js LTS image
+# Use official Node.js runtime as base
 FROM node:18
 
-# Set the working directory inside the container
+# Set working directory inside container
 WORKDIR /app
 
-# Copy package files first to install dependencies
+# Copy package files first (for caching layers)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install --production
 
-# Copy the rest of the application code
+# Copy rest of the app
 COPY . .
 
-# Expose the port your app runs on
+# Expose port (match your server.js PORT)
 EXPOSE 5000
 
-# Set environment variable for production
-ENV NODE_ENV=production
-
-# Start the server
+# Start the app
 CMD ["node", "server.js"]
-
