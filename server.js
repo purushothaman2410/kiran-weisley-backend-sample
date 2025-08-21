@@ -21,18 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 // ===== Serve uploaded files =====
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ===== Routes (imported after express setup) =====
+// ===== Routes (only gallery for now) =====
 const galleryRoutes = require('./routes/gallery.js');
-const sliderRoutes  = require('./routes/slider.js');
-const servicesRoutes  = require('./routes/services.js');
-const profileRoutes  = require('./routes/profile.js');
-const recentWorksRoutes  = require('./routes/recentWorks.js');
-
 app.use('/api/gallery', galleryRoutes);
-app.use('/api/sliders', sliderRoutes);
-app.use('/api/services', servicesRoutes);
-app.use('/api/profile', profileRoutes);
-app.use('/api/recentworks', recentWorksRoutes);
 
 // ===== Root API =====
 app.get('/api', (req, res) => {
