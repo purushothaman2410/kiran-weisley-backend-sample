@@ -25,6 +25,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const galleryRoutes = require('./routes/gallery.js');
 app.use('/api/gallery', galleryRoutes);
 
+// ===== Health Check =====
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // ===== Root API =====
 app.get('/api', (req, res) => {
   res.send(`
