@@ -10,24 +10,18 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ===== Middleware =====
-// ✅ CORS setup
 app.use(cors({
-  origin: [
-    "http://ECSALB-286415689.us-east-2.elb.amazonaws.com", // ALB frontend
-    "http://localhost:4173"                                // Local frontend dev
-  ],
+  origin: "*",   // allow all origins for now (frontend can call backend)
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
 }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ===== Serve uploaded files =====
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ===== Routes =====
+// ===== Routes (only gallery for now) =====
 const galleryRoutes = require('./routes/gallery.js');
 app.use('/api/gallery', galleryRoutes);
 
